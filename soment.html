@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon-TP.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <title>In the Moment</title>
+  </head>
+  <body>
+    <div class="navigation-bar">
+      <button onclick="location.href='contact.html'" class="nav-button">Contact Us</button>
+      <button onclick="location.href='watch.html'" class="nav-button">Watch Us</button>
+      <button onclick="location.href='index.html'" class="nav-button" >Home Page</button>
+      <button onclick="location.href='moment.html'" class="nav-button">In the Moment</button>
+      <button onclick="location.href='merch.html'" class="nav-button">Our Merch</button>
+      <button onclick="location.href='quiz.html'" class="nav-button">Do You Want More?</button>
+    </div>
+    <br>
+    <h1 style="font-size: 50px;" class="Center">At the Moment:</h1>
+    <h1 class="Center">Our Latest Video:</h1>
+    <br><br>
+    <div class="Center" id="latest_video">
+      <script>
+          const API_KEY = 'AIzaSyCjIRrg8QJWBsYVS8CAYhK1en0_xDVZ2Pk';
+          const CHANNEL_ID = 'UCgcuAt4acDSj83OGKFGMndg';
+
+          async function fetchLatestVideo() {
+            const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`;
+
+            try {
+              const response = await fetch(apiUrl);
+              const data = await response.json();
+
+              if (!data.items || data.items.length === 0) {
+                throw new Error("No video data found.");
+              }
+
+              const videoId = data.items[0].id.videoId;
+              const videoContainer = document.getElementById('latest_video');
+
+              videoContainer.innerHTML = `
+                <iframe width="560" height="315"
+                  src="https://www.youtube.com/embed/${videoId}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              `;
+            } catch (error) {
+              console.error('Error fetching video:', error);
+              document.getElementById('latest_video').innerHTML = '⚠️ Failed to load video.';
+            }
+          }
+
+          fetchLatestVideo();
+        </script>
+    </div>
+    <div id="channel-stats">
+  <h2>Twinzee Productions Stats 📊</h2>
+  <div id="stats-container">
+    <p><strong>Subscribers:</strong> <span id="subscribers">Loading...</span></p>
+    <p><strong>Videos:</strong> <span id="videos">Loading...</span></p>
+    <p><strong>Total Views:</strong> <span id="views">Loading...</span></p>
+    <p><strong>Joined:</strong> <span id="joined">Loading...</span></p>
+    <script>
+  const apiKey = 'AIzaSyCjIRrg8QJWBsYVS8CAYhK1en0_xDVZ2Pk'; // Replace this
+  const channelId = 'UCgcuAt4acDSj83OGKFGMndg';
+
+  async function fetchYouTubeStats() {
+    const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const channel = data.items[0];
+
+      document.getElementById('subscribers').textContent = channel.statistics.subscriberCount;
+      document.getElementById('videos').textContent = channel.statistics.videoCount;
+      document.getElementById('views').textContent = channel.statistics.viewCount;
+      document.getElementById('joined').textContent = new Date(channel.snippet.publishedAt).toDateString();
+    } catch (error) {
+      console.error('Error fetching YouTube stats:', error);
+      document.getElementById('channel-stats').innerHTML = '<p style="color:red;">Failed to load channel data.</p>';
+    }
+  }
+
+  fetchYouTubeStats();
+</script>
+  </div>
+</div>
+
+  </body>
+  </html>
