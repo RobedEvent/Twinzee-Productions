@@ -47,14 +47,12 @@ body, html {
   display: flex;
   top: 0px;
   left: 0px;
-  transform: translateY(-100%);
-  transition: transform 0.4s ease;
-  opacity: 0;
 }
 .navigation-bar:hover {
    transform: translateY(0);
-   opacity: 1;
 }
+
+
 
 .nav-button {
   background-color: blue;
@@ -143,4 +141,41 @@ padding: 50px 50px;
 #stats-container p {
   font-size: 18px;
   margin: 10px 0;
+}
+
+#contact-us_button {
+  font-family: Anton;
+  font-size: 30px;
+  border: 30px solid blue;
+  color: white;
+  background-color: blue;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.quiz-container {
+  background: blue;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-left: 490px;
+  font-family: Arial;
+  }
+
+.quiz-container button{
+  outline: none;
+  border: 0;
+  background: black;
+  color: white;
+    }
+.question {
+      font-weight: bold;
+    }
+.answers {
+      margin-top: 10px;
+    }
+#submit {
+  margin-top: 10px;
 }

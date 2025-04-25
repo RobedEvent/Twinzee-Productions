@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Do You Want More?</title>
     <link rel="icon" href="favicon-TP.ico">
     <link rel="stylesheet" href="styles.css">
@@ -16,13 +17,13 @@
       <button onclick="location.href='merch.html'" class="nav-button">Our Merch</button>
       <button onclick="location.href='quiz.html'" class="nav-button">Do You Want More?</button>
     </div>
-    <h1 class="Center" style="font-family: Anton;" >Quiz Time!</h1>
-
-    <div id="quiz-container">
-    <!-- Questions will appear here using JavaScript -->
-    <script src="quiz.js">
-    </script> <!-- Link to your JavaScript file -->
-    </div>
+    <h1 class="Center" style="font-family: Anton;  margin-top: 100px;" >Quiz Time!</h1>
+    <div class="quiz-container" class="Center">
+      <div id="quiz"></div>
+      <button id="submit">Guess</button>
+      <div id="results"></div>
+      <script src="quiz.js"></script>
+  </div>
 
 
   </body>
